@@ -6,6 +6,15 @@
 \usage{
 diremail(c = "", email = "")
 }
+\arguments{
+\item{c}{Carpeta origen.}
+
+\item{email}{Correo de google para la carpeta del drive.}
+}
 \description{
-Especificacion de la carpeta general y el correo de google
+Especifica la carpeta origen a utilizar para todos los archivos que se van a leer y tambien el correo a utilizar
+para la carpeta del drive personal.
+}
+\examples{
+diremail("D:/Reportes","ejemplo.1@gmail.com")
 }

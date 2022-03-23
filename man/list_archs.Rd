@@ -6,6 +6,19 @@
 \usage{
 list_archs(pat = "", ...)
 }
+\arguments{
+\item{pat}{Patron en donde se especifica la carpeta a buscar.}
+}
 \description{
-Lista de archivos de la ruta especificada
+Devuelve una lista de todos los archivos especificados, ya sea en toda la lista de archivos de la carpeta especificada
+o puede buscar por un patron.
+}
+\examples{
+-Se especifican todos los archivos que contiene la carpeta origen.
+
+list_archs()
+
+-Se especifican los archivos que se encuentran con el patron descrito.
+
+list_archs("VICI$")
 }

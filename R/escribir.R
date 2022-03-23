@@ -5,7 +5,11 @@
 #' @param sep Por defecto, si se imprime un archivo .txt este se separara con tabulaciones, se puede editar para usar cualquier separador.
 #' @param ... Parametros propios de las funciones  write.csv() y  write.table().
 #' @examples
-#' Hola
+#' escribir(Base,c("Ejemplo.csv","Carpeta2$"))
+#' -En este ejemplo se observa como se utiliza
+#' -un parametro propio de write.table()
+#' escribir(Nombre,c("Ejemplo2.txt","Carpeta2$"),";",eol = "#")
+#' @import utils
 #' @export
 escribir <- function(base,arch=c("",""),sep = "\t",...){
   dir <- paste(.c[grep(arch[2],.c)],arch[1],sep="/")
