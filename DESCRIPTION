@@ -1,7 +1,7 @@
 Package: MultiLEDS
 Type: Package
 Title: Multi lectura, escritura, descarga y subida
-Version: 0.1.0
+Version: 1.0.0
 Author: Joel Sebastian Salinas Barrera
 Maintainer: Joel Sebastian Salinas Barrera <jsalinba@utel.edu.mx>
 Description: Lectura y escritura simplificada de distintos archivos, incluidas las hojas de google.

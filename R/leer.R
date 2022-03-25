@@ -41,7 +41,7 @@ leer <- function(arch=c("",""),delim=NULL,...){
     }
   }else{ #Si no, busca la direccion completa por un patron.
     if (!stringr::str_detect(arch[2],"gsheet")) { #Si no se lee una hoja de google...
-      dir <- list.files(.c[grep(arch[2],.c)],full.names = T) %>% .[grep(arch[1],.)]
+      dir <- list.files(.c[grep(arch[2],.c)],full.names = T) %>% .[grep(paste("/",arch[1],"\\.",sep = ""),.)]
       y <- stringr::str_extract(dir,"\\..*")
       if (y==".csv") {#Si es un csv...
         x <- read_csv(dir,locale = locale(encoding = "LATIN1"),col_types = cols(.default = "c"),...)
@@ -52,7 +52,7 @@ leer <- function(arch=c("",""),delim=NULL,...){
       }
     }else{#Si es una hoja de google, lee.
       if (stringr::str_detect(arch[2],".ID")) {#Si se esta leyendo con un ID...
-        x <- range_speedread(arch[1],col_types = cols(.default = ".c"),...)
+        x <- range_speedread(arch[1],col_types = cols(.default = "c"),...)
       }else{#Si no, busca por nombre el ID y lo lee, solo funciona para archivos propios no compartidos
         y <- gs4_find(arch[1]); y <- as.character(y$id); x <- range_speedread(y,col_types = cols(.default = "c"),...)
       }
