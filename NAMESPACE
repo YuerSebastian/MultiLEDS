@@ -2,6 +2,7 @@
 
 export(diremail)
 export(escribir)
+export(extr_secc)
 export(leer)
 export(list_archs)
 export(unificar)

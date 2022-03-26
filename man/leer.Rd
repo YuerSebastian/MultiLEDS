@@ -5,7 +5,7 @@
 \alias{leer}
 \title{Lectura de multiples fuentes}
 \usage{
-leer(arch = c("", ""), delim = NULL, ...)
+leer(arch = c("", ""), delim = NULL, secc = NULL, ...)
 }
 \arguments{
 \item{arch}{Direccion completa o vector donde indica el nombre y la ruta en forma de patron, si se lee un gsheet se indica "gsheet" en arch[2],

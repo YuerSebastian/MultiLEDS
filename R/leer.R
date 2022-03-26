@@ -31,7 +31,7 @@
 #' @encoding LATIN1
 
 
-leer <- function(arch=c("",""),delim=NULL,...){
+leer <- function(arch=c("",""),delim=NULL,secc=NULL,...){
   if (length(arch)==1){ #Si es una direccion completa o en este caso, el vector tiene longitud 1...
     x <- stringr::str_extract(arch,"\\..*")
     if (x==".csv") {
@@ -47,14 +47,17 @@ leer <- function(arch=c("",""),delim=NULL,...){
         x <- read_csv(dir,locale = locale(encoding = "LATIN1"),col_types = cols(.default = "c"),...)
       }else if (y==".xlsx"){#Si es un xlsx...
         x <- read_excel(dir,col_types = "text",...)
+        if (!is.null(secc)) {x <- extr_secc(x,secc)}
       }else if (y==".txt"){#Si es un txt...
         x <- read_delim(dir,locale = locale(encoding = "LATIN1"),col_types = cols(.default = "c"),delim = delim...)
       }
     }else{#Si es una hoja de google, lee.
       if (stringr::str_detect(arch[2],".ID")) {#Si se esta leyendo con un ID...
         x <- range_speedread(arch[1],col_types = cols(.default = "c"),...)
+        if (!is.null(secc)) {x <- extr_secc(x,secc)}
       }else{#Si no, busca por nombre el ID y lo lee, solo funciona para archivos propios no compartidos
         y <- gs4_find(arch[1]); y <- as.character(y$id); x <- range_speedread(y,col_types = cols(.default = "c"),...)
+        if (!is.null(secc)) {x <- extr_secc(x,secc)}
       }
     }
   }
