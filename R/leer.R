@@ -6,7 +6,6 @@
 #' @param arch Direccion completa o vector donde indica el nombre y la ruta en forma de patron, si se lee un gsheet se indica "gsheet" en arch[2],
 #' si se requiere leer por su ID se debe especificar en el mismo "gsheet.ID", para esto es necesario especificar el correo electronico a usar para leer los archivos de tipo gsheet,
 #' indicado en diremail()
-#' @param delim Opcional. si se lee un archivo .txt en ella se indica el delimitador a usar.
 #' @param ... Parametros propios de las distintas funciones read_csv(), read_delim(), read_excel() y range_speedread().
 #' @examples
 #' -Lectura simple de una ruta completa.
@@ -31,7 +30,7 @@
 #' @encoding LATIN1
 
 
-leer <- function(arch=c("",""),delim=NULL,secc=NULL,...){
+leer <- function(arch=c("",""),secc=NULL,...){
   if (length(arch)==1){ #Si es una direccion completa o en este caso, el vector tiene longitud 1...
     x <- stringr::str_extract(arch,"\\..*")
     if (x==".csv") {
@@ -49,7 +48,7 @@ leer <- function(arch=c("",""),delim=NULL,secc=NULL,...){
         x <- read_excel(dir,col_types = "text",...)
         if (!is.null(secc)) {x <- extr_secc(x,secc)}
       }else if (y==".txt"){#Si es un txt...
-        x <- read_delim(dir,locale = locale(encoding = "LATIN1"),col_types = cols(.default = "c"),delim = delim...)
+        x <- read_delim(dir,locale = locale(encoding = "LATIN1"),col_types = cols(.default = "c"),...)
       }
     }else{#Si es una hoja de google, lee.
       if (stringr::str_detect(arch[2],".ID")) {#Si se esta leyendo con un ID...
