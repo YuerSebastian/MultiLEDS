@@ -8,7 +8,7 @@
 #' escribir(Base,c("Ejemplo.csv","Carpeta2$"))
 #' -En este ejemplo se observa como se utiliza
 #' -un parametro propio de write.table()
-#' escribir(Nombre,c("Ejemplo2.txt","Carpeta2$"),";",eol = "#")
+#' escribir(Nombre,c("Ejemplo2.txt","Carpeta2$"),"-",eol = "#")
 #' @import utils
 #' @export
 escribir <- function(base,arch=c("",""),sep = "\t",...){

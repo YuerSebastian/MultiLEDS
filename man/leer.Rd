@@ -5,14 +5,12 @@
 \alias{leer}
 \title{Lectura de multiples fuentes}
 \usage{
-leer(arch = c("", ""), delim = NULL, secc = NULL, ...)
+leer(arch = c("", ""), secc = NULL, ...)
 }
 \arguments{
 \item{arch}{Direccion completa o vector donde indica el nombre y la ruta en forma de patron, si se lee un gsheet se indica "gsheet" en arch[2],
 si se requiere leer por su ID se debe especificar en el mismo "gsheet.ID", para esto es necesario especificar el correo electronico a usar para leer los archivos de tipo gsheet,
 indicado en diremail()}
-
-\item{delim}{Opcional. si se lee un archivo .txt en ella se indica el delimitador a usar.}
 
 \item{...}{Parametros propios de las distintas funciones read_csv(), read_delim(), read_excel() y range_speedread().}
 }
