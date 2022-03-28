@@ -1,3 +1,5 @@
+#' @title Extraccion de secciones
+#' @description Extrae secciones completas (si se requiere) de archivos gsheet o excel.
 #' @export
 extr_secc <- function(x,secc){
   #Extraccion de la seccion

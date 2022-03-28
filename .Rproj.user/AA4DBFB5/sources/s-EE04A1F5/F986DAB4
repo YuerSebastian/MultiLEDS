@@ -1,0 +1,26 @@
+{
+    "id": "F986DAB4",
+    "path": "D:/Scripts/Github/MultiLEDS/R/extr_secc.R",
+    "project_path": "R/extr_secc.R",
+    "type": "r_source",
+    "hash": "2258031450",
+    "contents": "",
+    "dirty": false,
+    "created": 1648428082461.0,
+    "source_on_save": false,
+    "relative_order": 3,
+    "properties": {
+        "source_window_id": "",
+        "Source": "Source",
+        "cursorPosition": "1,87",
+        "scrollLine": "0"
+    },
+    "folds": "",
+    "lastKnownWriteTime": 1648428239,
+    "encoding": "ISO8859-1",
+    "collab_server": "",
+    "source_window": "",
+    "last_content_update": 1648428239993,
+    "read_only": false,
+    "read_only_alternatives": []
+}
