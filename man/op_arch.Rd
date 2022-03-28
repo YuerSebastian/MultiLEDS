@@ -4,7 +4,7 @@
 \alias{op_arch}
 \title{Operaciones con archivos}
 \usage{
-op_arch(op = NULL, arch = c("", "", ""), ...)
+op_arch(op = NULL, arch = c("", "", "", ""), ...)
 }
 \description{
 Operaciones con archivos
