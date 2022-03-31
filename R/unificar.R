@@ -1,13 +1,13 @@
 #' @title Unificacion de varios archivos a la vez
 #' @description Unifica archivos completos en un solo DataFrame, utiliza la misma funcion leer() para transformar los archivos.
-#' @param dir Ruta de la carpeta en donde contiene todos los archivos a unificar, puede utilizar un patron
-#' @param pat Especifica un patron para unificar solo los archivos que lo contienen.
+#' @param dir Ruta de la carpeta en donde contiene todos los archivos a unificar, puede utilizar un patron especificando un vector c("dir","pat")
+#' para especificar archivos exactos.
 #' @param cols Vector de columnas a seleccionar en el DataFrame final, es muy util en archivos de tipo .xlsx ya que no contiene un parametro especifico
 #' para seleccionar columnas, tambien es util cuando se requiere cambiar primero los nombres que no coinciden en todos los archivos a unificar, si una
 #' columna dentro del archivo no existe, crea una columna con un solo caracter especificado en col_vac
+#' @param renom Renombra las columnas al nombre que se necesiten
 #' @param col_vac Caracter utilizado para especificar como se debe llenar la columna vacia, en caso de que no exista en el archivo cuando se selecciona
 #' @param ... Parametros propios de las funciones que utiliza leer()
-#' @param renom Renombra las columnas al nombre que se necesiten
 #' @examples
 #' -Aqui no se especifica ningun parametro mas que dir y pat, en donde unifica todos los archivos
 #' -que contengan el patron "Actas Docente"
@@ -35,10 +35,13 @@
 #' @import dplyr tidyr readr googlesheets4 readxl
 #' @export
 
-unificar <- function(dir=.c,pat=NULL,cols=NULL,renom=NULL,col_vac="_",...){
+unificar <- function(dir=c(.c,""),cols=NULL,renom=NULL,col_vac="_",...){
   #####-------------Identificando archivos-------------#####
-  archs <- list.files(.c[grep(dir,.c)],full.names = T)
-  if(!is.null(pat)) archs <- archs[grep(pat,archs)]
+  if (length(dir) == 1) {
+    archs <- list.files(.c[grep(dir, .c)], full.names = T)
+  } else{
+    archs <- list.files(.c[grep(dir[1], .c)], full.names = T); archs <- archs[grep(dir[2], archs)]
+  }
   #####-------------Proceso completo de unificacion-------------#####
   for (i in 1:length(archs)) {
     y <- leer(archs[i],...) #Lee archivo.
