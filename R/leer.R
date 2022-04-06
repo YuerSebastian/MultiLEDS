@@ -37,6 +37,8 @@ leer <- function(arch=c("",""),secc=NULL,...){
       x <- read_csv(arch,locale = locale(encoding = "LATIN1"),col_types = cols(.default = "c"),...)
     }else if (x==".xlsx"){
       x <- read_excel(arch,col_types = "text",...)
+    }else if (x==".txt"){
+      x <- read_delim(arch,locale = locale(encoding = "LATIN1"),col_types = cols(.default = "c"),...)
     }
   }else{ #Si no, busca la direccion completa por un patron.
     if (!stringr::str_detect(arch[2],"gsheet")) { #Si no se lee una hoja de google...
