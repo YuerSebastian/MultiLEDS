@@ -32,7 +32,7 @@
 #'           "A.analista SER"="Analista SER"),
 #'           skip = 1)
 #' @return Un DataFrame con todos los archivos unificados.
-#' @import dplyr tidyr readr googlesheets4 readxl
+#' @import dplyr tidyr readr readxl
 #' @export
 
 unificar <- function(dir=c(.c,""),cols=NULL,renom=NULL,col_vac="_",...){

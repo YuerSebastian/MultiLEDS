@@ -4,12 +4,11 @@
 \alias{unificar}
 \title{Unificacion de varios archivos a la vez}
 \usage{
-unificar(dir = .c, pat = NULL, cols = NULL, renom = NULL, col_vac = "_", ...)
+unificar(dir = c(.c, ""), cols = NULL, renom = NULL, col_vac = "_", ...)
 }
 \arguments{
-\item{dir}{Ruta de la carpeta en donde contiene todos los archivos a unificar, puede utilizar un patron}
-
-\item{pat}{Especifica un patron para unificar solo los archivos que lo contienen.}
+\item{dir}{Ruta de la carpeta en donde contiene todos los archivos a unificar, puede utilizar un patron especificando un vector c("dir","pat")
+para especificar archivos exactos.}
 
 \item{cols}{Vector de columnas a seleccionar en el DataFrame final, es muy util en archivos de tipo .xlsx ya que no contiene un parametro especifico
 para seleccionar columnas, tambien es util cuando se requiere cambiar primero los nombres que no coinciden en todos los archivos a unificar, si una

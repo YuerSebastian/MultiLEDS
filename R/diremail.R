@@ -5,12 +5,13 @@
 #' @param email Correo de google para la carpeta del drive.
 #' @examples
 #' diremail("D:/Reportes","ejemplo.1@gmail.com")
+#' @import googledrive googlesheets4
 #' @export
 diremail <- function(c="",email=""){
   .c <<- list.dirs(c)
   .email <<- email
   if (.email != ""){
-    googledrive::drive_auth(.email)
-    googlesheets4::gs4_auth(.email)
+    drive_auth(.email)
+    gs4_auth(.email)
   }
 }
