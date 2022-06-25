@@ -20,7 +20,7 @@ Escribe un archvo .csv o .txt por el momento, tal como la funcion leer() se indi
 }
 \examples{
 escribir(Base,c("Ejemplo.csv","Carpeta2$"))
--En este ejemplo se observa como se utiliza
--un parametro propio de write.table()
+En este ejemplo se observa como se utiliza
+un parametro propio de write.table()
 escribir(Nombre,c("Ejemplo2.txt","Carpeta2$"),"-",eol = "#")
 }

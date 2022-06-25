@@ -28,8 +28,6 @@
 #' @export
 #' @import dplyr tidyr readr googlesheets4 readxl
 #' @encoding LATIN1
-
-
 leer <- function(arch=c("",""),secc=NULL,...){
   if (length(arch)==1){ #Si es una direccion completa o en este caso, el vector tiene longitud 1...
     x <- stringr::str_extract(arch,"\\..*")
