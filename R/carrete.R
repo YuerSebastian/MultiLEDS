@@ -22,4 +22,5 @@
 carrete <- function(x,rep,sig=T){
   y <- rep_len(x,rep) %>% .[length(.)]
   if(sig) x <- x[c(grep(y,x):length(x),1:grep(y,x))] %>% .[2:length(.)] else x <- x[c(grep(y,x):length(x),1:grep(y,x))] %>% .[1:length(.)-1]
+  return(x)
 }
