@@ -35,16 +35,55 @@
 #' @import dplyr tidyr readr readxl
 #' @export
 
-unificar <- function(dir=c(.c,""),cols=NULL,renom=NULL,col_vac="_",...){
+unificar <- function(dir=c(.c,""),renom=NULL,cols=NULL,col_vac="_",iden="no",iden_esp=NULL,...){
   #####-------------Identificando archivos-------------#####
+  niden <- iden
   if (length(dir) == 1) {
     archs <- list.files(.c[grep(dir, .c)], full.names = T)
   } else{
     archs <- list.files(.c[grep(dir[1], .c)], full.names = T); archs <- archs[grep(dir[2], archs)]
   }
+  #####-------------Identificador de archivo-------------#####
+  if(niden!="no"){
+    if(length(dir)==1){
+      if(niden=="nom"){
+        id <- list.files(.c[grep(dir, .c)])
+      }
+      else if(niden=="dir"){
+        id <- list.files(.c[grep(dir, .c)], full.names = T)
+      }
+      else if(niden=="num"){
+        id <- list.files(.c[grep(dir, .c)]) %>% row_number()
+      }
+      else if(niden=="esp"){
+        id <- niden
+      }
+    }else{
+      if(niden=="nom"){
+        id <- list.files(.c[grep(dir[1], .c)]); id <- id[grep(dir[2], id)]
+      }
+      else if(niden=="dir"){
+        id <- list.files(.c[grep(dir[1], .c)], full.names = T); id <- id[grep(dir[2], id)]
+      }
+      else if(niden=="num"){
+        id <- list.files(.c[grep(dir[1], .c)]); id <- id[grep(dir[2], id)] %>% row_number()
+      }
+      else if(niden=="esp"){
+        if (!is.null(iden_esp)){
+          id <- iden_esp
+        }else{
+          print("No se escribe identificador especifico, no se genera columna...")
+          niden <- "no"
+        }
+      }
+    }
+  }else{
+    iden <- "no"
+  }
   #####-------------Proceso completo de unificacion-------------#####
   for (i in 1:length(archs)) {
     y <- leer(archs[i],...) #Lee archivo.
+    if (niden!="no") y <- mutate(y,iden=id[i])
     #####-------------Re nombrando-------------#####
     if (!is.null(renom)) {
       y <- reshape::rename(y,renom)

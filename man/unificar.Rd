@@ -4,17 +4,25 @@
 \alias{unificar}
 \title{Unificacion de varios archivos a la vez}
 \usage{
-unificar(dir = c(.c, ""), cols = NULL, renom = NULL, col_vac = "_", ...)
+unificar(
+  dir = c(.c, ""),
+  renom = NULL,
+  cols = NULL,
+  col_vac = "_",
+  iden = "no",
+  iden_esp = NULL,
+  ...
+)
 }
 \arguments{
 \item{dir}{Ruta de la carpeta en donde contiene todos los archivos a unificar, puede utilizar un patron especificando un vector c("dir","pat")
 para especificar archivos exactos.}
 
+\item{renom}{Renombra las columnas al nombre que se necesiten}
+
 \item{cols}{Vector de columnas a seleccionar en el DataFrame final, es muy util en archivos de tipo .xlsx ya que no contiene un parametro especifico
 para seleccionar columnas, tambien es util cuando se requiere cambiar primero los nombres que no coinciden en todos los archivos a unificar, si una
 columna dentro del archivo no existe, crea una columna con un solo caracter especificado en col_vac}
-
-\item{renom}{Renombra las columnas al nombre que se necesiten}
 
 \item{col_vac}{Caracter utilizado para especificar como se debe llenar la columna vacia, en caso de que no exista en el archivo cuando se selecciona}
 
