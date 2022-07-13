@@ -83,7 +83,6 @@ unificar <- function(dir=c(.c,""),renom=NULL,cols=NULL,col_vac="_",iden="no",ide
   #####-------------Proceso completo de unificacion-------------#####
   for (i in 1:length(archs)) {
     y <- leer(archs[i],...) #Lee archivo.
-    if (niden!="no") y <- mutate(y,iden=id[i])
     #####-------------Re nombrando-------------#####
     if (!is.null(renom)) {
       y <- reshape::rename(y,renom)
@@ -97,6 +96,7 @@ unificar <- function(dir=c(.c,""),renom=NULL,cols=NULL,col_vac="_",iden="no",ide
       }
       y <- select(y,identity(cols))#Selecciona las columnas.
     }
+    if (niden!="no") y <- mutate(y,iden=id[i])
     if(i==1) x <- y else x <- rbind(x,y) #Unifica
   }
   print(paste(i," Archivos unificados con exito.",sep=""))
