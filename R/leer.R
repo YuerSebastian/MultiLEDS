@@ -33,7 +33,7 @@ leer <- function(arch=c("",""),secc=NULL,...){
     x <- stringr::str_extract(arch,"\\..*")
     if (x==".csv") {
       x <- read_csv(arch,locale = locale(encoding = "LATIN1"),col_types = cols(.default = "c"),...)
-    }else if (x==".xlsx"){
+    }else if (x==".xlsx" | x==".xlsm" | x==".xls"){
       x <- read_excel(arch,col_types = "text",...)
     }else if (x==".txt"){
       x <- read_delim(arch,locale = locale(encoding = "LATIN1"),col_types = cols(.default = "c"),...)
