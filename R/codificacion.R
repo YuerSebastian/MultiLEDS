@@ -9,6 +9,7 @@
 #' x <- leer(c("archivo","carpeta$"))
 #' x <- codificacion(x)
 #' -En este punto, si el archivo de origen tiene la codifiacion UTF-8, se convertira a LATIN1, de a cuerdo al alfabeto latino.
+#' @export
 codificacion <- function(x,desde="UTF-8",hacia="ISO8859-1"){
   x <- mutate_all(x,~iconv(.,desde,hacia)) %>% `colnames<-`(.,iconv(names(.),desde,hacia))
   return(x)
