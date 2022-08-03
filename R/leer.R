@@ -34,7 +34,7 @@ leer <- function(arch=c("",""),secc=NULL,...){
     if (x==".csv") {
       x <- read_csv(arch,locale = locale(encoding = "LATIN1"),col_types = cols(.default = "c"),...)
     }else if (x==".xlsx" | x==".xlsm" | x==".xls"){
-      x <- read_excel(arch,col_types = "text",...)
+      x <- read_excel(arch,...)
     }else if (x==".txt"){
       x <- read_delim(arch,locale = locale(encoding = "LATIN1"),col_types = cols(.default = "c"),...)
     }
@@ -45,7 +45,7 @@ leer <- function(arch=c("",""),secc=NULL,...){
       if (y==".csv") {#Si es un csv...
         x <- read_csv(dir,locale = locale(encoding = "LATIN1"),col_types = cols(.default = "c"),...)
       }else if (y==".xlsx" | y==".xlsm" | y==".xls"){#Si es un xlsx...
-        x <- read_excel(dir,col_types = "text",...)
+        x <- read_excel(dir,...)
         if (!is.null(secc)) {x <- extr_secc(x,secc)}
       }else if (y==".txt"){#Si es un txt...
         x <- read_delim(dir,locale = locale(encoding = "LATIN1"),col_types = cols(.default = "c"),...)
