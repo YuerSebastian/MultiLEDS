@@ -3,7 +3,7 @@
 #'
 #'
 #' @export
-#' @import googledrive googlesheets4
+#' @import googledrive
 #'
 drive_sd <- function(mod=NULL,arch=c("nom","nom2","dir"),...){
   if (length(arch==2)) {

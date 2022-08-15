@@ -5,7 +5,8 @@
 #' debido al mismo motivo, se toma en cuenta para solucionarlo.
 #' @param arch Direccion completa o vector donde indica el nombre y la ruta en forma de patron, si se lee un gsheet se indica "gsheet" en arch[2],
 #' si se requiere leer por su ID se debe especificar en el mismo "gsheet.ID", para esto es necesario especificar el correo electronico a usar para leer los archivos de tipo gsheet,
-#' indicado en diremail()
+#' indicado en diremail().
+#' Puede realizar una consulta de MySQL especificando "msql" en arch[2] y una consulta en arch[1] retornando un dataframe con la consulta especificada.
 #' @param ... Parametros propios de las distintas funciones read_csv(), read_delim(), read_excel() y range_speedread().
 #' @examples
 #' -Lectura simple de una ruta completa.
@@ -26,7 +27,7 @@
 #' leer(c("sDfGtHjGfusj56G8hkohejemplo","gsheet.ID"), sheet= "Info")
 #' @return Un data frame del archivo leido
 #' @export
-#' @import dplyr tidyr readr googlesheets4 readxl
+#' @import dplyr tidyr readr googlesheets4 readxl RMySQL
 #' @encoding LATIN1
 leer <- function(arch=c("",""),secc=NULL,...){
   if (length(arch)==1){ #Si es una direccion completa o en este caso, el vector tiene longitud 1...
@@ -39,7 +40,7 @@ leer <- function(arch=c("",""),secc=NULL,...){
       x <- read_delim(arch,locale = locale(encoding = "LATIN1"),col_types = cols(.default = "c"),...)
     }
   }else{ #Si no, busca la direccion completa por un patron.
-    if (!stringr::str_detect(arch[2],"gsheet")) { #Si no se lee una hoja de google...
+    if (!stringr::str_detect(arch[2],"gsheet") & !stringr::str_detect(arch[2],"msql")) {# Si no se lee gsheet ni msql...
       dir <- list.files(.c[grep(arch[2],.c)],full.names = T) %>% .[grep(paste("/",arch[1],"\\.",sep = ""),.)]
       y <- stringr::str_extract(dir,"\\..*")
       if (y==".csv") {#Si es un csv...
@@ -50,13 +51,19 @@ leer <- function(arch=c("",""),secc=NULL,...){
       }else if (y==".txt"){#Si es un txt...
         x <- read_delim(dir,locale = locale(encoding = "LATIN1"),col_types = cols(.default = "c"),...)
       }
-    }else{#Si es una hoja de google, lee.
-      if (stringr::str_detect(arch[2],".ID")) {#Si se esta leyendo con un ID...
-        x <- range_speedread(arch[1],col_types = cols(.default = "c"),...)
-        if (!is.null(secc)) {x <- extr_secc(x,secc)}
-      }else{#Si no, busca por nombre el ID y lo lee, solo funciona para archivos propios no compartidos
-        y <- gs4_find(arch[1]); y <- as.character(y$id); x <- range_speedread(y,col_types = cols(.default = "c"),...)
-        if (!is.null(secc)) {x <- extr_secc(x,secc)}
+    }else{#Si se quiere leer gsheet o msql
+      if (stringr::str_detect(arch[2],"gsheet")) {#Si se lee gsheet...
+        if (stringr::str_detect(arch[2],".ID")) {#Si se esta leyendo con un ID...
+          x <- range_speedread(arch[1],col_types = cols(.default = "c"),...)
+          if (!is.null(secc)) {x <- extr_secc(x,secc)}
+        }else{#Si no, busca por nombre el ID y lo lee, solo funciona para archivos propios no compartidos
+          y <- gs4_find(arch[1]); y <- as.character(y$id); x <- range_speedread(y,col_types = cols(.default = "c"),...)
+          if (!is.null(secc)) {x <- extr_secc(x,secc)}
+        }
+      }else if (stringr::str_detect(arch[2],"msql")){#Si no, hace una consulta de msql
+        con <- dbConnect(MySQL(),user=.msql[2],host=.msql[1],password=.msql[3],dbname=.msql[4])
+        x <- dbGetQuery(con,arch[1])
+        dbDisconnect(con)
       }
     }
   }
