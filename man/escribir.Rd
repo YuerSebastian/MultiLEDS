@@ -4,7 +4,7 @@
 \alias{escribir}
 \title{Escritura simplificada (Incompleto)}
 \usage{
-escribir(base, arch = c("", ""), sep = "\\t", ...)
+escribir(base, arch = c("", ""), sep = "\\t", cod = "LATIN1", ...)
 }
 \arguments{
 \item{base}{DataFrame a escribir.}
@@ -12,6 +12,8 @@ escribir(base, arch = c("", ""), sep = "\\t", ...)
 \item{arch}{Vector donde se indica Nombre del archivo y extension, para arch[1] y patron de la carpeta en donde se va a escribir en arch[2].}
 
 \item{sep}{Por defecto, si se imprime un archivo .txt este se separara con tabulaciones, se puede editar para usar cualquier separador.}
+
+\item{cod}{Elige la codificacion para escribir, por defecto "LATIN1", no aplica al escribir en un gsheet}
 
 \item{...}{Parametros propios de las funciones  write.csv() y  write.table().}
 }

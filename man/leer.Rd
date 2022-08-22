@@ -10,7 +10,8 @@ leer(arch = c("", ""), secc = NULL, ...)
 \arguments{
 \item{arch}{Direccion completa o vector donde indica el nombre y la ruta en forma de patron, si se lee un gsheet se indica "gsheet" en arch[2],
 si se requiere leer por su ID se debe especificar en el mismo "gsheet.ID", para esto es necesario especificar el correo electronico a usar para leer los archivos de tipo gsheet,
-indicado en diremail()}
+indicado en diremail().
+Puede realizar una consulta de MySQL especificando "msql" en arch[2] y una consulta en arch[1] retornando un dataframe con la consulta especificada.}
 
 \item{...}{Parametros propios de las distintas funciones read_csv(), read_delim(), read_excel() y range_speedread().}
 }

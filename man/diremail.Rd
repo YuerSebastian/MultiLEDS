@@ -11,7 +11,7 @@ diremail(c = "", email = "", msql = "")
 
 \item{email}{Correo de google para la carpeta del drive.}
 
-\item{msql}{Conexion a MySQL, vector con orden c("host","user","pass","db")}
+\item{msql}{Conexion a MySQL, vector con orden c("host","usuario","contrasenia","base de datos")}
 }
 \description{
 Especifica la carpeta origen a utilizar para todos los archivos que se van a leer, el correo a utilizar
