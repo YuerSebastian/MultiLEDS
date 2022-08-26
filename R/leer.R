@@ -27,7 +27,7 @@
 #' leer(c("sDfGtHjGfusj56G8hkohejemplo","gsheet.ID"), sheet= "Info")
 #' @return Un data frame del archivo leido
 #' @export
-#' @import dplyr tidyr readr googlesheets4 readxl RMySQL
+#' @import dplyr tidyr readr googlesheets4 readxl RMySQL DBI
 #' @encoding LATIN1
 leer <- function(arch=c("",""),secc=NULL,...){
   if (length(arch)==1){ #Si es una direccion completa o en este caso, el vector tiene longitud 1...
