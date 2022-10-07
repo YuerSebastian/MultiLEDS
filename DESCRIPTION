@@ -1,7 +1,7 @@
 Package: MultiLEDS
 Type: Package
 Title: Lectura, Escritura, Descarga, Subida y operaciones.
-Version: 1.2.1
+Version: 1.2.2
 Author: Joel Sebastian Salinas Barrera
 Maintainer: Joel Sebastian Salinas Barrera <jo-el_se808-bas.tan@outlook.com>
 Description: Lectura y escritura simplificada de distintos archivos, incluidas las hojas de google, tambien puede simplificar operaciones con archivos. Esta libreria no contiene acentos debido a que no son permitidos.
