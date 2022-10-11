@@ -4,14 +4,14 @@
 \alias{repartir}
 \title{Reparte equitativamente}
 \usage{
-repartir(Base, x, col, reem = NA)
+repartir(Base, col, x, reem = NA)
 }
 \arguments{
 \item{Base}{Dataframe, se retorna el mismo con la columna repartida}
 
-\item{x}{Vector de datos los cuales se van a repartir.}
-
 \item{col}{Columna del dataframe que se tomara para repartir el vector.}
+
+\item{x}{Vector de datos los cuales se van a repartir.}
 
 \item{reem}{Datos que se van a reemplazar de la columna dada, por defecto es "NA".}
 }
