@@ -18,5 +18,5 @@ Especifica la carpeta origen a utilizar para todos los archivos que se van a lee
 para la carpeta del drive personal y especificaciones para MySQL
 }
 \examples{
-diremail("D:/Reportes","ejemplo.1@gmail.com",c("10.10.10.100","usuario","contra","base_de_datos"))
+diremail("D:/Reportes","ejemplo.1@gmail.com",c("10.10.10.100",1234,"usuario","contra","base_de_datos"))
 }

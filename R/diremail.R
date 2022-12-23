@@ -5,7 +5,7 @@
 #' @param email Correo de google para la carpeta del drive.
 #' @param msql Conexion a MySQL, vector con orden c("host","usuario","contrasenia","base de datos")
 #' @examples
-#' diremail("D:/Reportes","ejemplo.1@gmail.com",c("10.10.10.100","usuario","contra","base_de_datos"))
+#' diremail("D:/Reportes","ejemplo.1@gmail.com",c("10.10.10.100",1234,"usuario","contra","base_de_datos"))
 #' @export
 diremail <- function(c="",email="",msql=""){
   if(c!="") .c <<- list.dirs(c)
