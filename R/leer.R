@@ -61,7 +61,7 @@ leer <- function(arch=c("",""),secc=NULL,...){
           if (!is.null(secc)) {x <- extr_secc(x,secc)}
         }
       }else if (stringr::str_detect(arch[2],"msql")){#Si no, hace una consulta de msql
-        con <- dbConnect(MySQL(),host=.msql[1],port=.msql[2],user=.msql[3],password=.msql[4],dbname=.msql[5])
+        con <- dbConnect(MySQL(),host=.msql[1],port=as.integer(.msql[2]),user=.msql[3],password=.msql[4],dbname=.msql[5])
         x <- dbGetQuery(con,arch[1])
         dbDisconnect(con)
       }
