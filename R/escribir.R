@@ -14,7 +14,7 @@
 #' @export
 escribir <- function(base,arch=c("",""),sep = "\t",cod = "LATIN1",...){
   if(length(arch)==1){#Parte de una direccion completa
-    x <- stringr::str_extract(arch,"\\..*")
+    x <- stringr::str_extract(arch,"\\.[^.]*$")
     if (x==".csv") {
       write.csv(base,arch,row.names = F,fileEncoding = cod,...)
     }else if (x==".txt"){
@@ -23,7 +23,7 @@ escribir <- function(base,arch=c("",""),sep = "\t",cod = "LATIN1",...){
   }else{#Parte de un patron
     if(!stringr::str_detect(arch[2],"gsheet")){#Si no se escribe en hoja de google.
       dir <- paste(.c[grep(arch[2],.c)],arch[1],sep="/")
-      x <- stringr::str_extract(arch[1],"\\..*")
+      x <- stringr::str_extract(arch[1],"\\.[^.]*$")
       if (x==".csv") {
         write.csv(base,dir,row.names = F,fileEncoding = cod,...)
       }
