@@ -29,27 +29,27 @@
 #' @export
 #' @import dplyr tidyr readr googlesheets4 readxl RMySQL DBI
 #' @encoding LATIN1
-leer <- function(arch=c("",""),secc=NULL,...){
+leer <- function(arch=c("",""),secc=NULL,enc="LATIN1",...){
   if (length(arch)==1){ #Si es una direccion completa o en este caso, el vector tiene longitud 1...
     x <- stringr::str_extract(arch,"\\.[^.]*$")
     if (x==".csv") {
-      x <- read_csv(arch,locale = locale(encoding = "LATIN1"),col_types = cols(.default = "c"),...)
+      x <- read_csv(arch,locale = locale(encoding = enc),col_types = cols(.default = "c"),...)
     }else if (x==".xlsx" | x==".xlsm" | x==".xls"){
       x <- read_excel(arch,col_types="text",...)
     }else if (x==".txt"){
-      x <- read_delim(arch,locale = locale(encoding = "LATIN1"),col_types = cols(.default = "c"),...)
+      x <- read_delim(arch,locale = locale(encoding = enc),col_types = cols(.default = "c"),...)
     }
   }else{ #Si no, busca la direccion completa por un patron.
     if (!stringr::str_detect(arch[2],"gsheet") & !stringr::str_detect(arch[2],"msql")) {# Si no se lee gsheet ni msql...
       dir <- list.files(.c[grep(arch[2],.c)],full.names = T) %>% .[grep(paste("/",arch[1],"\\.",sep = ""),.)]
       y <- stringr::str_extract(dir,"\\.[^.]*$")
       if (y==".csv") {#Si es un csv...
-        x <- read_csv(dir,locale = locale(encoding = "LATIN1"),col_types = cols(.default = "c"),...)
+        x <- read_csv(dir,locale = locale(encoding = enc),col_types = cols(.default = "c"),...)
       }else if (y==".xlsx" | y==".xlsm" | y==".xls"){#Si es un xlsx...
         x <- read_excel(dir,col_types="text",...)
         if (!is.null(secc)) {x <- extr_secc(x,secc)}
       }else if (y==".txt"){#Si es un txt...
-        x <- read_delim(dir,locale = locale(encoding = "LATIN1"),col_types = cols(.default = "c"),...)
+        x <- read_delim(dir,locale = locale(encoding = enc),col_types = cols(.default = "c"),...)
       }
     }else{#Si se quiere leer gsheet o msql
       if (stringr::str_detect(arch[2],"gsheet")) {#Si se lee gsheet...
